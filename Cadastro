@@ -1,0 +1,33 @@
+package entidade;
+
+public class Cadastro {
+	
+	private String nome;
+	private int idade;
+	
+	public Cadastro (String nome, int idade) {
+		this.nome = nome;
+		this.idade = idade;
+	}
+	
+	public String getnome() {
+		return nome;
+	}
+	public void setnome(String nome) {
+		this.nome = nome;
+	}
+	
+	public int getidade() {
+		return idade;
+	}
+	public void setidade(int idade) {
+		this.idade = idade;
+	}
+	
+	public String toString() {
+		 return nome + ", "
+				     + idade + ", "
+				     + String.format("%.2f");
+	 }
+
+}
