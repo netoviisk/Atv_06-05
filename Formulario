@@ -1,0 +1,53 @@
+package aplicacao;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import entidade.Cadastro;
+
+public class Formulario {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int maioridade = 0;
+		String maiornome = null;
+		List<Cadastro> lista = new ArrayList <> ();
+		System.out.println("Quantos Pessoas deseja Cadastrar: ");
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
+			System.out.println();
+			System.out.println("Cadastrado #" + i + ":");
+			
+			System.out.println("Nome: ");
+			String nome = sc.nextLine();
+			while(hasId(lista,nome)) {
+				System.out.println("Nome ja registrado, Digite Novamente: ");
+				nome = sc.nextLine();
+			}
+			
+			System.out.println("Idade: ");
+			int idade = sc.nextInt();
+			if(idade > maioridade) {
+				maioridade = idade;
+				maiornome = nome;
+			}
+			
+			lista.add(new Cadastro(nome, idade));
+		}
+		
+        System.out.println("Lista dos Cadastros:");
+		for (Cadastro obj : lista) {
+			System.out.println(obj);
+		}
+		System.out.println("Mais Velho: " + maiornome);
+		
+		sc.close();
+	}
+	
+	public static boolean hasId(List<Cadastro> lista, String nome) {
+		Cadastro emp = lista.stream().filter(x -> x.getnome() == nome).findFirst().orElse(null);
+		return emp != null;
+	}
+	
+}
